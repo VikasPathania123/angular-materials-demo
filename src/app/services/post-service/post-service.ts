@@ -1,0 +1,31 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from  '@angular/common/http';
+import { CustomPromisify } from 'util';
+import { observable } from 'rxjs';
+import { catchError, map } from "rxjs/operators";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PostService {
+  public httpOptions : any;
+
+  constructor(private _http : HttpClient) {
+    //Http Headers Options
+    this.httpOptions = {
+      headers: new HttpHeaders(
+        { 'Content-Type': 'application/json; charset=utf-8',
+          'BrowserToken' : 'auth_Token'})
+    }
+  }
+
+  //Get Post API CALL
+  public getPosts(baseUrl : string) {
+    return this._http.get(baseUrl);
+  };  
+
+  //Add Customer API call.
+  public addPost (baseUrl : string, post :any){
+    return this._http.post(baseUrl, post, this.httpOptions);
+  }
+}

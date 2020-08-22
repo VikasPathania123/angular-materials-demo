@@ -1,0 +1,51 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Add Post</h4>
+              <p class="card-category">New Post Form</p>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="postForm" (ngSubmit)="onSubmitPost()" class="form">
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="User Id" type="text" formControlName="userId">
+                      <mat-error *ngIf="isSubmitted && f.userId.errors">                     
+                        <div *ngIf="f.userId.errors.required">User Id is required.</div>
+                        <div *ngIf="f.userId.errors.pattern">Enter only number.</div>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Title" type="text" formControlName="title">
+                       <mat-error *ngIf="isSubmitted && f.title.errors">                     
+                        <div *ngIf="f.title.errors.required">Title is required.</div>
+                        <div *ngIf="f.title.errors.maxlength">Title length should not exceed more then 100 characters..</div>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Body" type="text" formControlName="body">
+                      <mat-error *ngIf="isSubmitted && f.body.errors">                     
+                        <div *ngIf="f.body.errors.required">Body is required.</div>
+                        <div *ngIf="f.body.errors.maxlength">Body length should not exceed more then 100 characters.</div>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <button mat-raised-button type="submit" class="btn btn-danger pull-right">Submit Post</button>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
